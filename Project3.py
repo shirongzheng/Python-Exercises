@@ -1,4 +1,4 @@
-#Shirong Zheng  CSC11300
+#Shirong Zheng        CSC11300
 #Project 3-Analyze Book
 
 import string
