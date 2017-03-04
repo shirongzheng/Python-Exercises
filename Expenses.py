@@ -1,0 +1,326 @@
+#Shirong Zheng    CSC11300
+# This program creates a Pie Chart based on expenses.
+# This program utilizes Turtle Graphics.
+
+
+from turtle import *
+
+food = int(input("Enter, to the nearest dollar, the expense made for Food: $"))
+utilities = int(input("Enter, to the nearest dollar, the expense made for Utilities: $"))
+rent = int(input("Enter, to the nearest dollar, the expense made for Rent: $"))
+gas = int(input("Enter, to the nearest dollar, the expense made on Gas: $"))
+entertainment = int(input("Enter, to the nearest dollar, the expense made on Entertainment: $"))
+
+totalExpense = food + utilities + rent + gas + entertainment
+
+foodFrac = (food / totalExpense)
+utilFrac = (utilities / totalExpense) 
+rentFrac = (rent / totalExpense) 
+gasFrac = (gas / totalExpense) 
+enterFrac = (entertainment / totalExpense) 
+
+foodAngle = (360 * foodFrac)
+utilAngle = (360 * utilFrac)
+rentAngle = (360 * rentFrac) 
+gasAngle = (360 * gasFrac)
+enterAngle = (360 * enterFrac) 
+
+foodToUtil = foodAngle + utilAngle
+utilToRent = foodToUtil + rentAngle
+rentToGas = utilToRent + gasAngle
+gasToEnter = rentToGas + enterAngle
+
+utilDollarAngle = foodToUtil - utilAngle / 2
+renDollarAngle = foodToUtil + rentAngle / 2
+gasDollarAngle = foodAngle + utilAngle + rentAngle + gasAngle - gasAngle / 2
+enterDollarAngle = foodAngle + utilAngle + rentAngle + gasAngle + enterAngle - enterAngle/2 + 2
+
+t = Turtle()
+
+t.speed(7)
+t.pensize(1)
+
+# draw the pie chart
+t.color("#4bacc6")
+t.begin_fill()
+t.circle(100)
+t.end_fill()
+
+# draw food wedge
+t.color("#4f81bd")
+t.begin_fill()
+t.circle(100, foodAngle)
+t.goto(0,100)
+t.home()
+t.end_fill()
+t.penup()
+t.circle(100, foodAngle)
+
+# draw utilities wedge
+t.color("#c0504d")
+t.begin_fill()
+t.pendown()
+t.circle(100, utilAngle)
+t.goto(0,100)
+t.end_fill()
+t.penup()
+t.home()
+t.circle(100, foodToUtil)
+
+# draw rent wedge
+t.color("#9bbb59")
+t.begin_fill()
+t.pendown()
+t.circle(100, rentAngle)
+t.goto(0,100)
+t.end_fill()
+t.penup()
+t.home()
+t.circle(100, utilToRent)
+
+# draw gas wedge
+t.color("#8064a2")
+t.begin_fill()
+t.pendown()
+t.circle(100, gasAngle)
+t.goto(0,100)
+t.end_fill()
+t.penup()
+t.home()
+t.circle(100,rentToGas)
+
+# draw entertainment wedge
+t.color("#4bacc6")
+t.begin_fill()
+t.pendown()
+t.circle(100,enterAngle)
+t.goto(0,100)
+t.end_fill()
+t.penup()
+t.home()
+
+# draws the pie outline
+t.pendown()
+t.color("black")
+t.pensize(2)
+t.circle(100)
+
+# writes the $ values
+
+# writes the $ for food
+t.color("black")
+t.penup()
+t.circle(100, foodAngle / 2)
+t.left(90)
+t.forward(30)
+t.write("$" + str(food))
+t.home()
+
+# writes the $ for utilities
+t.circle(100,utilDollarAngle)
+t.left(90)
+t.forward(30)
+t.write("$" + str(utilities))
+t.home()
+
+# writes the $ for rent
+t.circle(100,renDollarAngle)
+t.left(90)
+t.forward(30)
+t.write("$" + str(rent))
+t.home()
+
+# writes the $ for gas
+t.circle(100,gasDollarAngle)
+t.left(90)
+t.forward(30)
+t.write("$" + str(gas))
+t.home()
+
+# writes the $ for entertainment
+t.circle(100,340)
+t.left(90)
+t.forward(30)
+t.write("$" + str(entertainment))
+t.home()
+
+# draws the legend
+t.goto(0,100)
+t.forward(150)
+
+# draw the rent legend
+t.pendown()
+t.color("#9bbb59")
+t.begin_fill()
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.end_fill()
+t.color("black")
+t.pensize(1)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.penup()
+t.forward(15)
+t.right(90)
+t.forward(2)
+t.left(90)
+t.write("Rent")
+t.left(180)
+t.forward(15)
+t.right(90)
+t.forward(20)
+t.right(90)
+
+# draws the utilities legend
+t.pendown()
+t.color("#c0504d")
+t.begin_fill()
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.end_fill()
+t.color("black")
+t.pensize(1)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.penup()
+t.forward(15)
+t.right(90)
+t.forward(2)
+t.left(90)
+t.write("Utilities")
+t.left(180)
+t.forward(15)
+t.right(90)
+t.forward(20)
+t.right(90)
+
+# draws the food legend
+t.pendown()
+t.color("#4f81bd")
+t.begin_fill()
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.end_fill()
+t.color("black")
+t.pensize(1)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.penup()
+t.forward(15)
+t.right(90)
+t.forward(2)
+t.left(90)
+t.write("Food")
+t.left(180)
+t.forward(15)
+t.left(90)
+t.forward(52)
+t.left(90)
+
+# draws the gas legend
+t.pendown()
+t.color("#8064a2")
+t.begin_fill()
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.end_fill()
+t.color("black")
+t.pensize(1)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.penup()
+t.forward(15)
+t.right(90)
+t.forward(2)
+t.left(90)
+t.write("Gas")
+t.left(180)
+t.forward(15)
+t.left(90)
+t.forward(15)
+t.left(90)
+
+# draws the entertainment legend
+t.pendown()
+t.color("#4bacc6")
+t.begin_fill()
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(10)
+t.end_fill()
+t.color("black")
+t.pensize(1)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.forward(11)
+t.left(90)
+t.penup()
+t.forward(15)
+t.right(90)
+t.forward(2)
+t.left(90)
+t.write("Entertainment")
+t.home()
+t.circle(100, utilDollarAngle)
+
+t.hideturtle()
+
+done()
+

@@ -1,0 +1,57 @@
+#Shirong Zheng     csc11300
+#Project2
+
+MAX_N_SIZE =26
+
+def getMode():
+    while True:
+	    print('Would you like to encrypt or decrypt your message?')
+	    mode=raw_input().lower()
+	    if mode in 'encrypt decrypt '.split():
+		    return mode
+	    else:
+		    print('Only enter either "encrypt"or "decrypt".')
+
+def getMessage():
+    print('Please enter your message:')
+    return raw_input()
+
+def getN():
+    n=0
+    while True:
+	    print('Enter the n number(-1-%s)' % (MAX_N_SIZE))
+	    n=int(input())
+	    if (n>=-1 and n<=MAX_N_SIZE):
+		    return n
+		
+def getTranslatedMessage(mode,message,n):
+    if mode[0]=='d':
+	    n=-n
+    translated = ''
+    for symbol in message:
+	    if symbol.isalpha():
+		    num = ord(symbol)
+		    num += n
+		    if symbol.isupper():
+			    if num>ord('Z'):
+				    num -= 26
+			    elif num<ord('A'):
+				    num += 26
+					
+		    elif symbol.islower():
+			    if num>ord('z'):
+				    num -=26
+		    elif num<ord('a'):
+				    num +=26
+		    translated += chr(num)
+			
+	    else:
+		    translated +=symbol
+    return translated
+	
+mode = getMode()
+message = getMessage()
+n = getN()
+
+print('Your translated text is:')
+print(getTranslatedMessage(mode,message,n))	
